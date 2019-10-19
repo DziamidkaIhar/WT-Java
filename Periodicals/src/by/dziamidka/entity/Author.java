@@ -2,14 +2,15 @@ package by.dziamidka.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class Author implements Serializable{
     private int ID;
-    private String Name;
-    private String Surname;
+    private String name;
+    private String surname;
     private LocalDate dateOfBirth;
-    private List<Book> books;
+    private List<Integer> idBooks;
 
     public Author() {
     }
@@ -21,8 +22,8 @@ public class Author implements Serializable{
 
     @Override
     public int hashCode() {
-        int result = (Name != null)?Name.hashCode():0;
-        result = 31 * result + ((Surname != null)?Surname.hashCode():0);
+        int result = (name != null)?name.hashCode():0;
+        result = 31 * result + ((surname != null)?surname.hashCode():0);
         return result;
     }
 
@@ -30,19 +31,19 @@ public class Author implements Serializable{
     public String toString() {
         return "Author{" +
                 "ID=" + ID +
-                ", name='" + Name + '\'' +
-                ", surname='" + Surname + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", books=" + books +
+                ", idBooks=" + idBooks +
                 '}';
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Integer> getIdBooks() {
+        return idBooks;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setIdBooks(List<Integer> idBooks) {
+        this.idBooks = idBooks;
     }
 
     public int getID() {
@@ -54,19 +55,19 @@ public class Author implements Serializable{
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public String getSurname() {
-        return Surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.surname = surname;
     }
 
     public LocalDate getDateOfBirth() {

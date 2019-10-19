@@ -1,21 +1,57 @@
 package by.dziamidka.entity;
 
-import java.util.List;
-import java.util.Objects;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.*;
 
-public class Library {
+public class Library implements Serializable {
 
-    private List<Integer> booksID;
+    private ArrayList<Book> books;
+    private LocalDate creationDate;
+    private String title;
 
     public  Library()
     {
     }
 
+    public Library(String title) {
+        super();
+        creationDate = LocalDate.now();
+        books = new ArrayList<Book>();
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return "Library{" +
-                "booksID=" + booksID +
+                "books=" + books +
+                ", creationDate=" + creationDate +
+                ", title='" + title + '\'' +
                 '}';
+    }
+
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
@@ -23,22 +59,13 @@ public class Library {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Library library = (Library) o;
-        return Objects.equals(booksID, library.booksID);
+        return Objects.equals(books, library.books) &&
+                Objects.equals(creationDate, library.creationDate) &&
+                Objects.equals(title, library.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(booksID);
+        return Objects.hash(books, creationDate, title);
     }
-
-    public List<Integer> getBooksID() {
-        return booksID;
-    }
-
-    public void setBooksID(List<Integer> booksID) {
-        this.booksID = booksID;
-    }
-
-
-
 }

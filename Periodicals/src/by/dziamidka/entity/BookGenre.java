@@ -1,6 +1,8 @@
 package by.dziamidka.entity;
 
-public enum BookGenre {
+import java.io.Serializable;
+
+public enum BookGenre implements Serializable {
     FANTASY("fantasy"),
     SCIENCE_FICTION("science fiction"),
     WESTERN("western"),
