@@ -1,22 +1,25 @@
 package by.dziamidka.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Publisher implements Serializable {
-    private int ID;
-    private List<Integer> idBooks;
+    private ArrayList<Integer> books;
     private String title;
 
     public Publisher() {
     }
 
+    public Publisher(String title) {
+        books = new ArrayList<>();
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return "Publisher{" +
-                "ID=" + ID +
-                ", idBooks=" + idBooks +
+                "books=" + books +
                 ", title='" + title + '\'' +
                 '}';
     }
@@ -26,14 +29,13 @@ public class Publisher implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Publisher publisher = (Publisher) o;
-        return ID == publisher.ID &&
-                Objects.equals(idBooks, publisher.idBooks) &&
+        return Objects.equals(books, publisher.books) &&
                 Objects.equals(title, publisher.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, idBooks, title);
+        return Objects.hash(books, title);
     }
 
     public String getTitle() {
@@ -44,11 +46,11 @@ public class Publisher implements Serializable {
         this.title = title;
     }
 
-    public int getID() {
-        return ID;
+    public ArrayList<Integer> getBooks() {
+        return books;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setBooks(ArrayList<Integer> books) {
+        this.books = books;
     }
 }

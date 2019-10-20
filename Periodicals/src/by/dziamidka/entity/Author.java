@@ -2,56 +2,57 @@ package by.dziamidka.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class Author implements Serializable{
-    private int ID;
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
-    private List<Integer> idBooks;
+    private ArrayList<Book> books;
 
     public Author() {
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (name != null)?name.hashCode():0;
-        result = 31 * result + ((surname != null)?surname.hashCode():0);
-        return result;
+    public Author(String name, String surname, LocalDate dateOfBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        books = new ArrayList<Book>();
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "ID=" + ID +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", idBooks=" + idBooks +
+                ", books=" + books +
                 '}';
     }
 
-    public List<Integer> getIdBooks() {
-        return idBooks;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(name, author.name) &&
+                Objects.equals(surname, author.surname) &&
+                Objects.equals(dateOfBirth, author.dateOfBirth) &&
+                Objects.equals(books, author.books);
     }
 
-    public void setIdBooks(List<Integer> idBooks) {
-        this.idBooks = idBooks;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname, dateOfBirth, books);
     }
 
-    public int getID() {
-        return ID;
+    public ArrayList<Book> getBooks() {
+        return books;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
     }
 
     public String getName() {

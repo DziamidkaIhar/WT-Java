@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public enum BookGenre implements Serializable {
     FANTASY("fantasy"),
-    SCIENCE_FICTION("science fiction"),
+    SCIENCE_FICTION("science_fiction"),
     WESTERN("western"),
     ROMANCE("romance"),
     THRILLER("thriller"),

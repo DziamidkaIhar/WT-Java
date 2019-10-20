@@ -1,25 +1,25 @@
 package by.dziamidka.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class Genre implements Serializable {
-    private int ID;
     private BookGenre bookGenre;
-    private List<Integer> idBooks;
+    private ArrayList<Book> books;
 
     public Genre(BookGenre bookGenre) {
+        books = new ArrayList<Book>();
         this.bookGenre = bookGenre;
     }
 
     @Override
     public String toString() {
         return "Genre{" +
-                "ID=" + ID +
-                ", bookGenre=" + bookGenre +
-                ", idBooks=" + idBooks +
+                "bookGenre=" + bookGenre +
+                ", books=" + books +
                 '}';
     }
 
@@ -28,14 +28,13 @@ public class Genre implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Genre genre = (Genre) o;
-        return ID == genre.ID &&
-                bookGenre == genre.bookGenre &&
-                Objects.equals(idBooks, genre.idBooks);
+        return bookGenre == genre.bookGenre &&
+                Objects.equals(books, genre.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, bookGenre, idBooks);
+        return Objects.hash(bookGenre, books);
     }
 
     public Genre() {
@@ -49,19 +48,11 @@ public class Genre implements Serializable {
         this.bookGenre = bookGenre;
     }
 
-    public int getID() {
-        return ID;
+    public ArrayList<Book> getBooks() {
+        return books;
     }
 
-    public List<Integer> getIdBooks() {
-        return idBooks;
-    }
-
-    public void setIdBooks(List<Integer> idBooks) {
-        this.idBooks = idBooks;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
     }
 }

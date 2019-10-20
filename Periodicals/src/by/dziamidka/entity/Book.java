@@ -1,9 +1,5 @@
 package by.dziamidka.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -11,20 +7,19 @@ import java.util.Objects;
 
 
 public class Book implements Serializable {
-    private int ID;
     private String title;
     private Author author;
     private LocalDate yearOfPublication;
     private Publisher publisher;
     private Genre genre;
 
-    public Book(String title, Author author, LocalDate yearOfPublication, Genre genre) {
+    public Book(String title, Author author, LocalDate yearOfPublication, Publisher publisher, Genre genre) {
         this.title = title;
         this.author = author;
         this.yearOfPublication = yearOfPublication;
+        this.publisher = publisher;
         this.genre = genre;
     }
-
 
     public Book() {
     }
@@ -32,8 +27,7 @@ public class Book implements Serializable {
     @Override
     public String toString() {
         return "Book{" +
-                "ID=" + ID +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", author=" + author +
                 ", yearOfPublication=" + yearOfPublication +
                 ", publisher=" + publisher +
@@ -46,8 +40,7 @@ public class Book implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return ID == book.ID &&
-                Objects.equals(title, book.title) &&
+        return Objects.equals(title, book.title) &&
                 Objects.equals(author, book.author) &&
                 Objects.equals(yearOfPublication, book.yearOfPublication) &&
                 Objects.equals(publisher, book.publisher) &&
@@ -56,7 +49,7 @@ public class Book implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, title, author, yearOfPublication, publisher, genre);
+        return Objects.hash(title, author, yearOfPublication, publisher, genre);
     }
 
     public Publisher getPublisher() {
@@ -65,14 +58,6 @@ public class Book implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
     }
 
     public Genre getGenre() {

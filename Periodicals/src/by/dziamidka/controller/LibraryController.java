@@ -13,6 +13,10 @@ public class LibraryController {
         this.library = library;
     }
 
+    public void ShowBooks(){
+
+    }
+
     public void AddBook(Book book){
         ArrayList<Book> tmpBooks = library.getBooks();
         tmpBooks.add(book);
