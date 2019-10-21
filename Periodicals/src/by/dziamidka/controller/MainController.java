@@ -86,6 +86,67 @@ public class MainController {
                 isGenresInit = true;
             }catch (Exception e){
                 System.out.println("Can't read file with genres");
+                genres = new ArrayList<Genre>();
+            }
+        }
+    }
+
+    private void AuthorsInit(){
+        if(!isAuthorsInit){
+            try {
+                FileInputStream fis = new FileInputStream("data/authors.per");
+                ObjectInputStream oin = new ObjectInputStream(fis);
+                authors = (ArrayList<Author>) oin.readObject();
+                oin.close();
+                isAuthorsInit = true;
+            }catch (Exception e){
+                System.out.println("Can't read file with authors");
+                authors = new ArrayList<Author>();
+            }
+        }
+    }
+
+    private void PublishersInit(){
+        if(!isPublishersInit){
+            try {
+                FileInputStream fis = new FileInputStream("data/publishers.per");
+                ObjectInputStream oin = new ObjectInputStream(fis);
+                publishers = (ArrayList<Publisher>) oin.readObject();
+                oin.close();
+                isPublishersInit = true;
+            }catch (Exception e){
+                System.out.println("Can't read file with publishers");
+                publishers = new ArrayList<Publisher>();
+            }
+        }
+    }
+
+    private void DeleteFromFiles(Book book){
+        GenreInit();
+        AuthorsInit();
+        PublishersInit();
+        for (Genre genre: genres){
+            if(genre.getBookGenre().equals(book.getGenre().getBookGenre())){
+                ArrayList<Book> tmpBooks = genre.getBooks();
+                tmpBooks.remove(book);
+                genre.setBooks(tmpBooks);
+                break;
+            }
+        }
+        for (Author author: authors){
+            if(book.getAuthor().equals(author)){
+                ArrayList<Book> tmpBooks = author.getBooks();
+                tmpBooks.remove(book);
+                author.setBooks(tmpBooks);
+                break;
+            }
+        }
+        for (Publisher publisher: publishers){
+            if(book.getPublisher().equals(publisher)){
+                ArrayList<Book> tmpBooks = publisher.getBooks();
+                tmpBooks.remove(book);
+                publisher.setBooks(tmpBooks);
+                break;
             }
         }
     }
@@ -182,14 +243,7 @@ public class MainController {
             System.out.println("Book is not added");
             return null;
         }
-        Author author;
-        try {
-            author = GetAuthor(name, surname);
-        }
-        catch (Exception e){
-            System.out.println("Can't read authors file");
-            return null;
-        }
+        Author author = GetAuthor(name, surname);
         return author;
     }
 
@@ -201,14 +255,7 @@ public class MainController {
             System.out.println("Publisher is not added");
             return null;
         }
-        Publisher publisher;
-        try {
-            publisher = GetPublisher(name);
-        }
-        catch (Exception e){
-            System.out.println("Can't read publishers file");
-            return null;
-        }
+        Publisher publisher = GetPublisher(name);
         System.out.println("Publishers name :"+ publisher.getTitle());
         return publisher;
     }
@@ -233,42 +280,26 @@ public class MainController {
         return title;
     }
 
-    private Author GetAuthor(String name, String surname) throws IOException, ClassNotFoundException {
-        if (isAuthorsInit){
-            for(Author author : authors){
-                if(author.getName().equals(name)&&author.getSurname().equals(surname))
-                    return author;
-            }
-            Author newAuthor = new Author(name, surname);
-            authors.add(newAuthor);
-            return newAuthor;
-        }else {
-            FileInputStream fis = new FileInputStream("data/authors.per");
-            ObjectInputStream oin = new ObjectInputStream(fis);
-            authors = (ArrayList<Author>) oin.readObject();
-            oin.close();
-            isAuthorsInit = true;
-            return GetAuthor(name,surname);
+    private Author GetAuthor(String name, String surname) {
+        AuthorsInit();
+        for(Author author : authors){
+            if(author.getName().equals(name)&&author.getSurname().equals(surname))
+                return author;
         }
+        Author newAuthor = new Author(name, surname);
+        authors.add(newAuthor);
+        return newAuthor;
     }
 
-    private Publisher GetPublisher(String title) throws IOException, ClassNotFoundException {
-        if (isPublishersInit){
-            for(Publisher publisher : publishers){
-                if(publisher.getTitle().equals(title))
-                    return publisher;
-            }
-            Publisher newPublisher = new Publisher(title);
-            publishers.add(newPublisher);
-            return newPublisher;
-        }else {
-            FileInputStream fis = new FileInputStream("data/publishers.per");
-            ObjectInputStream oin = new ObjectInputStream(fis);
-            publishers = (ArrayList<Publisher>) oin.readObject();
-            oin.close();
-            isPublishersInit = true;
-            return GetPublisher(title);
+    private Publisher GetPublisher(String title){
+        PublishersInit();
+        for(Publisher publisher : publishers){
+            if(publisher.getTitle().equals(title))
+                return publisher;
         }
+        Publisher newPublisher = new Publisher(title);
+        publishers.add(newPublisher);
+        return newPublisher;
     }
 
     private void WorkingWithLib(){
@@ -295,12 +326,15 @@ public class MainController {
                         break;
                     case ADD_BOOK :
                         Book bookToAdd = GetBookInfo();
-                        this.curLib = libController.AddBook(bookToAdd);
-
+                        if(bookToAdd != null)
+                            this.curLib = libController.AddBook(bookToAdd);
                         break;
                     case CHANGE_BOOK :
                         break;
                     case DELETE_BOOK :
+                        Book bookToDelete = GetDeleteBook();
+                        if (bookToDelete != null)
+                            this.curLib = libController.DeleteBook(bookToDelete);
                         break;
                 }
             }else {
@@ -341,6 +375,32 @@ public class MainController {
         return newBook;
     }
 
+    private Book GetDeleteBook(){
+        System.out.println("Enter title of the book to delete(not empty) or 0 to go back to library: ");
+        scan.nextLine();
+        String title = scan.nextLine();
+        if(title.equals("0") || title.equals("")){
+            System.out.println("Book is not deleted");
+            return null;
+        }
+        System.out.println("Enter Author's surname of the book to delete(not empty) or 0 to go back to library: ");
+        //scan.nextLine();
+        String surname = scan.nextLine();
+        if(surname.equals("0") || surname.equals("")){
+            System.out.println("Book is not deleted");
+            return null;
+        }
+        ArrayList<Book> books = curLib.getBooks();
+        for(Book book : books){
+            if(book.getAuthor().getSurname().equals(surname)&&book.getTitle().equals(title)){
+                DeleteFromFiles(book);
+                return book;
+            }
+        }
+        System.out.println("Such book wasn't found");
+        return null;
+    }
+
     public void Start()
     {
         boolean isWork = true;
@@ -375,12 +435,12 @@ public class MainController {
                                 oin.close();
                                 isRead = true;
                                 System.out.println(curLib.getTitle() + " MENU:");
-
+                                WorkingWithLib();
                             }
                             catch (Exception e){
                                 System.out.println(e.getMessage() + ". Can't read this path, try again");
                             }
-                            WorkingWithLib();
+
                         }
                         break;
 

@@ -33,8 +33,7 @@ public class Author implements Serializable{
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
         return Objects.equals(name, author.name) &&
-                Objects.equals(surname, author.surname) &&
-                Objects.equals(books, author.books);
+                Objects.equals(surname, author.surname);
     }
 
     @Override

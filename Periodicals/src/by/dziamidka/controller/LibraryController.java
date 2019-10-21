@@ -33,4 +33,12 @@ public class LibraryController {
         System.out.println("Book " + book.getTitle() + " was added.");
         return library;
     }
+
+    public Library DeleteBook(Book book){
+        ArrayList<Book> tmpBooks = library.getBooks();
+        tmpBooks.remove(book);
+        library.setBooks(tmpBooks);
+        System.out.println("Book " + book.getTitle() + " was deleted.");
+        return library;
+    }
 }
