@@ -8,16 +8,14 @@ import java.util.Objects;
 public class Author implements Serializable{
     private String name;
     private String surname;
-    private LocalDate dateOfBirth;
     private ArrayList<Book> books;
 
     public Author() {
     }
 
-    public Author(String name, String surname, LocalDate dateOfBirth) {
+    public Author(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.dateOfBirth = dateOfBirth;
         books = new ArrayList<Book>();
     }
 
@@ -26,8 +24,6 @@ public class Author implements Serializable{
         return "Author{" +
                 "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", books=" + books +
                 '}';
     }
 
@@ -38,13 +34,12 @@ public class Author implements Serializable{
         Author author = (Author) o;
         return Objects.equals(name, author.name) &&
                 Objects.equals(surname, author.surname) &&
-                Objects.equals(dateOfBirth, author.dateOfBirth) &&
                 Objects.equals(books, author.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, dateOfBirth, books);
+        return Objects.hash(name, surname, books);
     }
 
     public ArrayList<Book> getBooks() {
@@ -71,11 +66,4 @@ public class Author implements Serializable{
         this.surname = surname;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 }

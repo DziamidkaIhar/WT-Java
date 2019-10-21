@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Publisher implements Serializable {
-    private ArrayList<Integer> books;
+    private ArrayList<Book> books;
     private String title;
 
     public Publisher() {
     }
 
     public Publisher(String title) {
-        books = new ArrayList<>();
+        books = new ArrayList<Book>();
         this.title = title;
     }
 
@@ -46,11 +46,11 @@ public class Publisher implements Serializable {
         this.title = title;
     }
 
-    public ArrayList<Integer> getBooks() {
+    public ArrayList<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(ArrayList<Integer> books) {
+    public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
 }

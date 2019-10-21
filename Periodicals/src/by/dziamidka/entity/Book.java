@@ -28,10 +28,10 @@ public class Book implements Serializable {
     public String toString() {
         return "Book{" +
                 "title='" + title + '\'' +
-                ", author=" + author +
+                ", author=" + author.getName() +
                 ", yearOfPublication=" + yearOfPublication +
-                ", publisher=" + publisher +
-                ", genre=" + genre +
+                ", publisher=" + publisher.getTitle() +
+                ", genre=" + genre.getBookGenre().getValue() +
                 '}';
     }
 
