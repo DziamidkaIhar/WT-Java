@@ -159,6 +159,28 @@ public class MainController {
         return null;
     }
 
+    private Author GetAuthor(String name, String surname) {
+        AuthorsInit();
+        for(Author author : authors){
+            if(author.getName().equals(name)&&author.getSurname().equals(surname))
+                return author;
+        }
+        Author newAuthor = new Author(name, surname);
+        authors.add(newAuthor);
+        return newAuthor;
+    }
+
+    private Publisher GetPublisher(String title){
+        PublishersInit();
+        for(Publisher publisher : publishers){
+            if(publisher.getTitle().equals(title))
+                return publisher;
+        }
+        Publisher newPublisher = new Publisher(title);
+        publishers.add(newPublisher);
+        return newPublisher;
+    }
+
     private Genre ChooseGenre(){
         boolean isChosen = false;
         GenreInit();
@@ -230,7 +252,7 @@ public class MainController {
 
     private Author ChooseAuthor(){
         System.out.println("Enter Author's name of the book(not empty) or 0 to go back to library: ");
-        //scan.nextLine();
+        scan.nextLine();
         String name = scan.nextLine();
         if(name.equals("0") || name.equals("")){
             System.out.println("Book is not added");
@@ -240,7 +262,7 @@ public class MainController {
         //scan.nextLine();
         String surname = scan.nextLine();
         if(surname.equals("0") || surname.equals("")){
-            System.out.println("Book is not added");
+            //System.out.println("Book is not added");
             return null;
         }
         Author author = GetAuthor(name, surname);
@@ -280,26 +302,105 @@ public class MainController {
         return title;
     }
 
-    private Author GetAuthor(String name, String surname) {
-        AuthorsInit();
-        for(Author author : authors){
-            if(author.getName().equals(name)&&author.getSurname().equals(surname))
-                return author;
+    private void ChangeBook(){
+        boolean isWork = true;
+        ArrayList<Book> books = curLib.getBooks();
+        while (isWork){
+            for(int i = 0; i < books.size(); i ++){
+                System.out.println(i+1 + ". - Title '"+books.get(i).getTitle()+"'.  Author : '"+books.get(i).getAuthor().getSurname()+"'");
+            }
+            System.out.println("Choose number of book to change , 0 - to go back");
+            if(scan.hasNextInt()){
+                int state = scan.nextInt();
+                if (state != 0){
+                    if(state <= books.size() && state > 0) {
+                        GetFieldsToChange(books.get(state - 1));
+                        isWork = false;
+                    }
+                }else{
+                    isWork = false;
+                }
+            }else {
+                System.out.println("It's not a number, try again");
+            }
         }
-        Author newAuthor = new Author(name, surname);
-        authors.add(newAuthor);
-        return newAuthor;
     }
 
-    private Publisher GetPublisher(String title){
-        PublishersInit();
-        for(Publisher publisher : publishers){
-            if(publisher.getTitle().equals(title))
-                return publisher;
+    private void GetFieldsToChange(Book book){
+        boolean isWork = true;
+        while (isWork){
+            System.out.println("0. Go back\n" +
+                    "1. Change title\n" +
+                    "2. Change author\n" +
+                    "3. Change year\n" +
+                    "4. Change publisher\n" +
+                    "5. Change genre");
+            if(scan.hasNextInt()){
+                int state = scan.nextInt();
+                BookController bc = new BookController(book);
+                switch (state){
+                    case 0:
+                        isWork = false;
+                        break;
+                    case 1:
+                        //bc = new BookController(book);
+                        System.out.println("Write new title(not empty)");
+                        scan.nextLine();
+                        String newTitle = scan.nextLine();
+                        if(newTitle.equals("")){
+                            System.out.println("String is empty, try again");
+                        }else {
+                            book = bc.ChangeTitle(newTitle);
+                            System.out.println("New title : " + newTitle);
+                        }
+                        break;
+                    case 2:
+                        //bc = new BookController(book);
+                        Author newAuthor = ChooseAuthor();
+                        if(newAuthor != null){
+                            book = bc.ChangeAuthor(newAuthor);
+                            System.out.println("New author : " + newAuthor.getName());
+                            ArrayList<Book> tmpAuthorsBook = newAuthor.getBooks();
+                            tmpAuthorsBook.add(book);
+                            newAuthor.setBooks(tmpAuthorsBook);
+                        }
+                        break;
+                    case 3:
+                        //bc = new BookController(book);
+                        LocalDate newDate = ChooseYear();
+                        if(newDate != null){
+                            book = bc.ChangeYear(newDate);
+                            System.out.println("New year of publication : " + newDate.getYear());
+                        }
+                        break;
+                    case 4:
+                        //bc = new BookController(book);
+                        Publisher newPublisher = ChoosePublisher();
+                        if(newPublisher != null){
+                            book = bc.ChangePublisher(newPublisher);
+                            System.out.println("New publisher : " + newPublisher.getTitle());
+                            ArrayList<Book> tmpPublishersBook = newPublisher.getBooks();
+                            tmpPublishersBook.add(book);
+                            newPublisher.setBooks(tmpPublishersBook);
+                        }
+                        break;
+                    case 5:
+                        Genre newGenre = ChooseGenre();
+                        if(newGenre != null){
+                            book = bc.ChangeGenre(newGenre);
+                            System.out.println("New Genre : "+ newGenre.getBookGenre().getValue());
+                            ArrayList<Book> tmpGenreBook = newGenre.getBooks();
+                            tmpGenreBook.add(book);
+                            newGenre.setBooks(tmpGenreBook);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }else {
+                System.out.println("Not a number, try again");
+            }
         }
-        Publisher newPublisher = new Publisher(title);
-        publishers.add(newPublisher);
-        return newPublisher;
     }
 
     private void WorkingWithLib(){
@@ -330,6 +431,7 @@ public class MainController {
                             this.curLib = libController.AddBook(bookToAdd);
                         break;
                     case CHANGE_BOOK :
+                        ChangeBook();
                         break;
                     case DELETE_BOOK :
                         Book bookToDelete = GetDeleteBook();
@@ -363,16 +465,20 @@ public class MainController {
         if(publisher == null)
             return null;
         Book newBook = new Book(title, author, date, publisher, genre);
-        ArrayList<Book> tmpAuthorsBooks = author.getBooks();
-        tmpAuthorsBooks.add(newBook);
-        author.setBooks(tmpAuthorsBooks);
-        ArrayList<Book> tmpGenreBooks = genre.getBooks();
-        tmpGenreBooks.add(newBook);
-        genre.setBooks(tmpGenreBooks);
-        ArrayList<Book> tmpPublishersBooks = publisher.getBooks();
-        tmpPublishersBooks.add(newBook);
-        publisher.setBooks(tmpPublishersBooks);
+        FillListFields(newBook);
         return newBook;
+    }
+
+    private void FillListFields(Book book){
+        ArrayList<Book> tmpAuthorsBooks = book.getAuthor().getBooks();
+        tmpAuthorsBooks.add(book);
+        book.getAuthor().setBooks(tmpAuthorsBooks);
+        ArrayList<Book> tmpGenreBooks = book.getGenre().getBooks();
+        tmpGenreBooks.add(book);
+        book.getGenre().setBooks(tmpGenreBooks);
+        ArrayList<Book> tmpPublishersBooks = book.getPublisher().getBooks();
+        tmpPublishersBooks.add(book);
+        book.getPublisher().setBooks(tmpPublishersBooks);
     }
 
     private Book GetDeleteBook(){
@@ -401,8 +507,7 @@ public class MainController {
         return null;
     }
 
-    public void Start()
-    {
+    public void Start(){
         boolean isWork = true;
         scan = new Scanner(System.in);
         while(isWork){
