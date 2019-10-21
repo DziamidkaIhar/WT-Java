@@ -6,7 +6,9 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
+
 
 public class MainController {
 
@@ -25,6 +27,29 @@ public class MainController {
     private boolean isAuthorsInit = false;
     private boolean isGenresInit = false;
     private boolean isPublishersInit = false;
+    private static TitleComparator titleComparator = new TitleComparator();
+    private static YearComparator yearComparator = new YearComparator();
+
+    private static class TitleComparator implements Comparator<Book> {
+        public int compare(Book book1, Book book2){
+            return (book1.getTitle().compareTo(book2.getTitle()));
+        }
+    }
+
+    private static class YearComparator implements Comparator<Book>{
+        @Override
+        public int compare(Book book, Book t1) {
+            return (book.getYearOfPublication().getYear() - t1.getYearOfPublication().getYear());
+        }
+    }
+
+    private static Comparator getYearComparator() {
+        return yearComparator;
+    }
+
+    private static Comparator getTitleComparator(){
+        return titleComparator;
+    }
 
     public MainController() {
     }
@@ -198,6 +223,7 @@ public class MainController {
 
             if (scan.hasNextInt()){
                 int state = scan.nextInt();
+                scan.nextLine();
                 switch (state){
                     case 0:
                         isChosen = true;
@@ -235,6 +261,7 @@ public class MainController {
         while (!isChosen) {
             if (scan.hasNextInt()) {
                 int year = scan.nextInt();
+                scan.nextLine();
                 if (year == 0)
                     return null;
                 try {
@@ -252,7 +279,7 @@ public class MainController {
 
     private Author ChooseAuthor(){
         System.out.println("Enter Author's name of the book(not empty) or 0 to go back to library: ");
-        scan.nextLine();
+        //scan.nextLine();
         String name = scan.nextLine();
         if(name.equals("0") || name.equals("")){
             System.out.println("Book is not added");
@@ -271,7 +298,7 @@ public class MainController {
 
     private Publisher ChoosePublisher(){
         System.out.println("Enter publisher's name(not empty) or 0 to go back to library");
-        scan.nextLine();
+        //scan.nextLine();
         String name = scan.nextLine();
         if(name.equals("0") || name.equals("")){
             System.out.println("Publisher is not added");
@@ -287,7 +314,7 @@ public class MainController {
         String title = null;
         while (!isChosen){
             System.out.println("Enter title of the book(not empty) or 0 to go back to library:");
-            scan.nextLine();
+            //scan.nextLine();
             title = scan.nextLine();
             isChosen = true;
             if(title.equals("0")){
@@ -312,6 +339,7 @@ public class MainController {
             System.out.println("Choose number of book to change , 0 - to go back");
             if(scan.hasNextInt()){
                 int state = scan.nextInt();
+                scan.nextLine();
                 if (state != 0){
                     if(state <= books.size() && state > 0) {
                         GetFieldsToChange(books.get(state - 1));
@@ -337,6 +365,7 @@ public class MainController {
                     "5. Change genre");
             if(scan.hasNextInt()){
                 int state = scan.nextInt();
+                scan.nextLine();
                 BookController bc = new BookController(book);
                 switch (state){
                     case 0:
@@ -345,7 +374,7 @@ public class MainController {
                     case 1:
                         //bc = new BookController(book);
                         System.out.println("Write new title(not empty)");
-                        scan.nextLine();
+                        //scan.nextLine();
                         String newTitle = scan.nextLine();
                         if(newTitle.equals("")){
                             System.out.println("String is empty, try again");
@@ -413,10 +442,13 @@ public class MainController {
                     + SHOW_BOOKS + ". Show books \n" +
                     + ADD_BOOK + ". Add book \n" +
                     + CHANGE_BOOK + ". Change book \n" +
-                    + DELETE_BOOK + ". Delete book");
+                    + DELETE_BOOK + ". Delete book\n" +
+                    "5. Sort books by name\n" +
+                    "6. Sort books by year" );
 
             if (scan.hasNextInt()){
                 int state = scan.nextInt();
+                scan.nextLine();
                 LibraryController libController = new LibraryController(this.curLib);
                 switch (state){
                     case EXIT:
@@ -437,6 +469,18 @@ public class MainController {
                         Book bookToDelete = GetDeleteBook();
                         if (bookToDelete != null)
                             this.curLib = libController.DeleteBook(bookToDelete);
+                        break;
+                    case 5:
+                        ArrayList<Book> tmpBooksByTitle = curLib.getBooks();
+                        tmpBooksByTitle.sort(getTitleComparator());
+                        curLib.setBooks(tmpBooksByTitle);
+                        break;
+                    case 6:
+                        ArrayList<Book> tmpBooksByYear = curLib.getBooks();
+                        tmpBooksByYear.sort(getYearComparator());
+                        curLib.setBooks(tmpBooksByYear);
+                        break;
+                    default:
                         break;
                 }
             }else {
@@ -483,7 +527,7 @@ public class MainController {
 
     private Book GetDeleteBook(){
         System.out.println("Enter title of the book to delete(not empty) or 0 to go back to library: ");
-        scan.nextLine();
+        //scan.nextLine();
         String title = scan.nextLine();
         if(title.equals("0") || title.equals("")){
             System.out.println("Book is not deleted");
@@ -518,6 +562,7 @@ public class MainController {
 
             if(scan.hasNextInt()){
                 int state = scan.nextInt();
+                scan.nextLine();
                 switch (state){
                     case EXIT:
                         isWork = false;
@@ -527,7 +572,7 @@ public class MainController {
                         boolean isRead = false;
                         while (!isRead){
                             System.out.println("Enter name of library, 0 - to go back:");
-                            scan.nextLine();
+                            //scan.nextLine();
                             String name = scan.nextLine();
                             if(name.equals("0"))
                                 break;
@@ -553,7 +598,7 @@ public class MainController {
                         boolean isCreate = false;
                         while (!isCreate) {
                             System.out.println("Enter name of your library, 0 - go back:");
-                            scan.nextLine();
+                            //scan.nextLine();
                             String name = scan.nextLine();
                             if(name.equals("0"))
                                 break;
@@ -582,8 +627,7 @@ public class MainController {
             }
         }
         scan.close();
-        ///////////SAVE FILES/////////////////
-        System.out.println("Don't forget to save changes");
         SaveChanges();
-    }
+        System.out.println("Files were saved");
+}
 }

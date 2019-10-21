@@ -12,8 +12,6 @@ public enum BookGenre implements Serializable {
     DETECTIVE("detective"),
     DYSTOPIA("dystopia");
 
-
-
     BookGenre(String value) {
         this.value = value;
     }

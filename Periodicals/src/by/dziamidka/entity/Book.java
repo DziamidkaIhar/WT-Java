@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
-
 public class Book implements Serializable {
     private String title;
     private Author author;
@@ -41,10 +39,7 @@ public class Book implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return Objects.equals(title, book.title) &&
-                Objects.equals(author, book.author) ;/*&&
-                Objects.equals(yearOfPublication, book.yearOfPublication) &&
-                Objects.equals(publisher, book.publisher) &&
-                Objects.equals(genre, book.genre);*/
+                Objects.equals(author, book.author) ;
     }
 
     @Override

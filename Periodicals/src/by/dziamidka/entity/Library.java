@@ -10,12 +10,10 @@ public class Library implements Serializable {
     private LocalDate creationDate;
     private String title;
 
-    public  Library()
-    {
+    public  Library(){
     }
 
     public Library(String title) {
-        //super();
         creationDate = LocalDate.now();
         books = new ArrayList<Book>();
         this.title = title;
@@ -68,6 +66,5 @@ public class Library implements Serializable {
     public int hashCode() {
         return Objects.hash(books, creationDate, title);
     }
-
 
 }
