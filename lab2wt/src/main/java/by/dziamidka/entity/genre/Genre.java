@@ -1,20 +1,24 @@
 package by.dziamidka.entity.genre;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 public enum Genre {
     FANTASY(1,"fantasy"),
     SCIENCE_FICTION(2,"science_fiction"),
-    WESTERN(2,"western"),
-    ROMANCE(3,"romance"),
-    THRILLER(4,"thriller"),
-    MYSTERY(5,"mystery"),
-    DETECTIVE(6,"detective"),
-    DYSTOPIA(7,"dystopia");
+    WESTERN(3,"western"),
+    ROMANCE(4,"romance"),
+    THRILLER(5,"thriller"),
+    MYSTERY(6,"mystery"),
+    DETECTIVE(7,"detective"),
+    DYSTOPIA(8,"dystopia");
 
+    @JacksonXmlProperty(isAttribute = true)
     private int id;
+
     private String title;
 
-    Genre(int ID, String title) {
-        this.id = ID;
+    Genre(int id, String title) {
+        this.id = id;
         this.title = title;
     }
 

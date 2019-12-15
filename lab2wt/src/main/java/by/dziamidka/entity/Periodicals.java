@@ -2,6 +2,7 @@ package by.dziamidka.entity;
 
 import by.dziamidka.entity.author.Author;
 import by.dziamidka.entity.book.Book;
+import by.dziamidka.entity.bookInLibrary.BookInLibrary;
 import by.dziamidka.entity.genre.Genre;
 import by.dziamidka.entity.library.Library;
 import by.dziamidka.entity.publisher.Publisher;
@@ -33,4 +34,8 @@ public class Periodicals {
     @JacksonXmlElementWrapper(localName = "Books")
     @JacksonXmlProperty(localName = "book")
     private List<Book> books;
+
+    @JacksonXmlElementWrapper(localName = "booksInLibrary")
+    @JacksonXmlProperty(localName = "bookInLibrary")
+    private List<BookInLibrary> bookInLibrary;
 }
