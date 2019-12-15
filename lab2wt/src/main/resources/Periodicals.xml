@@ -1,0 +1,28 @@
+<Periodicals>
+    <Libraries>
+        <library id ="1">
+            <title></title>
+            <creationDate></creationDate>
+        </library>
+    </Libraries>
+    <Books>
+        <book id = "1">
+
+        </book>
+    </Books>
+    <Authors>
+        <author id = "1">
+
+        </author>
+    </Authors>
+    <Genres>
+        <genre id = "1">
+            <title>fantasy</title>
+        </genre>
+    </Genres>
+    <Publishers>
+        <publisher id = "1">
+
+        </publisher>
+    </Publishers>
+</Periodicals>
