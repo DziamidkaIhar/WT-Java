@@ -1,0 +1,93 @@
+<Periodicals>
+    <Libraries>
+        <library id ="1">
+            <title>firstLib</title>
+            <creationDate>12/15/2019</creationDate>
+        </library>
+        <library id ="2">
+            <title>Generation Terrorists</title>
+            <creationDate>02/10/1992</creationDate>
+        </library>
+    </Libraries>
+    <Books>
+        <book id = "1">
+            <title>Chicago</title>
+            <authorId>1</authorId>
+            <yearOfPublication>2005</yearOfPublication>
+            <publisherId>1</publisherId>
+            <genreId>4</genreId>
+        </book>
+        <book id = "2">
+            <title>So Dead</title>
+            <authorId>2</authorId>
+            <yearOfPublication>1992</yearOfPublication>
+            <publisherId>2</publisherId>
+            <genreId>4</genreId>
+        </book>
+        <book id = "2">
+            <title>Motorcycle Emptiness</title>
+            <authorId>2</authorId>
+            <yearOfPublication>1992</yearOfPublication>
+            <publisherId>2</publisherId>
+            <genreId>8</genreId>
+        </book>
+    </Books>
+    <Authors>
+        <author id = "1">
+            <name>Sufjan</name>
+            <surname>Stevens</surname>
+        </author>
+        <author id = "2">
+            <name>MSP</name>
+            <surname>with Richey</surname>
+        </author>
+    </Authors>
+    <Genres>
+        <genre id = "1">
+            <title>fantasy</title>
+        </genre>
+        <genre id = "2">
+            <title>science_fiction</title>
+        </genre>
+        <genre id = "3">
+            <title>western</title>
+        </genre>
+        <genre id = "4">
+            <title>romance</title>
+        </genre>
+        <genre id = "5">
+            <title>thriller</title>
+        </genre>
+        <genre id = "6">
+            <title>mystery</title>
+        </genre>
+        <genre id = "7">
+            <title>detective</title>
+        </genre>
+        <genre id = "8">
+            <title>dystopia</title>
+        </genre>
+    </Genres>
+    <Publishers>
+        <publisher id = "1">
+            <title>Theese days</title>
+        </publisher>
+        <publisher id = "2">
+            <title>Columbia</title>
+        </publisher>
+    </Publishers>
+    <BooksInLibrary>
+        <bookInLibrary>
+            <bookId>1</bookId>
+            <libraryId>1</libraryId>
+        </bookInLibrary>
+        <bookInLibrary>
+            <bookId>2</bookId>
+            <libraryId>2</libraryId>
+        </bookInLibrary>
+        <bookInLibrary>
+            <bookId>3</bookId>
+            <libraryId>2</libraryId>
+        </bookInLibrary>
+    </BooksInLibrary>
+</Periodicals>
