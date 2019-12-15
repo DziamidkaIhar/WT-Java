@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="Periodicals">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name = "Libraries">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "library" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "title" type = "xsd:string"></xsd:element>
+                                        <xsd:element name = "creationDate" type = "xsd:string"></xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name = "Books">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "book" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "title" type = "xsd:string"></xsd:element>
+                                        <xsd:element name = "authorId" type = "xsd:int"></xsd:element>
+                                        <xsd:element name = "yearOfPublication" type = "xsd:int"></xsd:element>
+                                        <xsd:element name = "publisherId" type = "xsd:int"></xsd:element>
+                                        <xsd:element name = "genreId" type = "xsd:int"></xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name = "Authors">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "author" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "name" type = "xsd:string"></xsd:element>
+                                        <xsd:element name = "surname" type = "xsd:string"></xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name = "Genres">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "genre" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "title" type = "xsd:string"></xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name = "Publishers">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "publisher" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "title" type = "xsd:string"></xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute name="id" type="xsd:int"></xsd:attribute>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name = "BooksInLibrary">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name = "bookInLibrary" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name = "bookId" type = "xsd:int"></xsd:element>
+                                        <xsd:element name = "authorId" type = "xsd:int"></xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

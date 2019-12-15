@@ -76,7 +76,7 @@
             <title>Columbia</title>
         </publisher>
     </Publishers>
-    <booksInLibrary>
+    <BooksInLibrary>
         <bookInLibrary>
             <bookId>1</bookId>
             <libraryId>1</libraryId>
@@ -89,5 +89,5 @@
             <bookId>3</bookId>
             <libraryId>2</libraryId>
         </bookInLibrary>
-    </booksInLibrary>
+    </BooksInLibrary>
 </Periodicals>
