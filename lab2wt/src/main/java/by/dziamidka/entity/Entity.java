@@ -7,4 +7,8 @@ import java.io.Serializable;
 public class Entity implements Serializable {
     @JacksonXmlProperty(isAttribute = true)
     private int id;
+
+    public int getId() {
+        return id;
+    }
 }

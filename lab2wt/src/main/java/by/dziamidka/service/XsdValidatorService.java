@@ -9,10 +9,13 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.IOException;
+
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.log4j.Logger;
 
 
 public class XsdValidatorService {
+
 
     public static XsdValidatorService getInstance()
     {

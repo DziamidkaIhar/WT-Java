@@ -10,6 +10,9 @@ public class Author extends Entity {
     private String surname;
     private ArrayList<Book> books;
 
+    public Author() {
+    }
+
     public Author(String name, String surname) {
         this.name = name;
         this.surname = surname;

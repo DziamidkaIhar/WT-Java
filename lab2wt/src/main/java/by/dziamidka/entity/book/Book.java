@@ -5,7 +5,7 @@ import by.dziamidka.entity.Entity;
 
 public class Book extends Entity {
     private String title;
-    private int authorID;
+    private int authorId;
     private String yearOfPublication;
     private int publisherId;
     private int genreId;
@@ -13,9 +13,9 @@ public class Book extends Entity {
     public Book() {
     }
 
-    public Book(String title, int authorID, String yearOfPublication, int publisherId, int genreId) {
+    public Book(String title, int authorId, String yearOfPublication, int publisherId, int genreId) {
         this.title = title;
-        this.authorID = authorID;
+        this.authorId = authorId;
         this.yearOfPublication = yearOfPublication;
         this.publisherId = publisherId;
         this.genreId = genreId;
@@ -25,8 +25,8 @@ public class Book extends Entity {
         return title;
     }
 
-    public int getAuthorID() {
-        return authorID;
+    public int getAuthorId() {
+        return authorId;
     }
 
     public String getYearOfPublication() {

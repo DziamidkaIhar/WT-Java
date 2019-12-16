@@ -35,7 +35,55 @@ public class Periodicals {
     @JacksonXmlProperty(localName = "book")
     private List<Book> books;
 
-    @JacksonXmlElementWrapper(localName = "booksInLibrary")
+    @JacksonXmlElementWrapper(localName = "BooksInLibrary")
     @JacksonXmlProperty(localName = "bookInLibrary")
     private List<BookInLibrary> bookInLibrary;
+
+    public List<Library> getLibraries() {
+        return libraries;
+    }
+
+    public void setLibraries(List<Library> libraries) {
+        this.libraries = libraries;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public List<Publisher> getPublishers() {
+        return publishers;
+    }
+
+    public void setPublishers(List<Publisher> publishers) {
+        this.publishers = publishers;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<BookInLibrary> getBookInLibrary() {
+        return bookInLibrary;
+    }
+
+    public void setBookInLibrary(List<BookInLibrary> bookInLibrary) {
+        this.bookInLibrary = bookInLibrary;
+    }
 }

@@ -3,11 +3,11 @@ GO
 IF NOT EXISTS (
    SELECT name
    FROM sys.databases
-   WHERE name = N'WT_Periodicals'
+   WHERE name = N'Periodicals'
 )
-CREATE DATABASE WT_Periodicals;
+CREATE DATABASE Periodicals;
 GO
-USE [WT_Periodicals]
+USE [Periodicals]
 
 
 CREATE TABLE Libraries
@@ -61,7 +61,7 @@ CREATE TABLE Books
 
 CREATE TABLE BooksInLibrary
 (
-	BookId INT NOT NULL,
+	BookId INT NOT NULL UNIQUE,
 	LibraryId INT NOT NULL,
 	CONSTRAINT FK_Book_Library_Id
 		FOREIGN KEY (BookId)
