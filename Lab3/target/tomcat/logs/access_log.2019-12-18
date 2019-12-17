@@ -1,0 +1,17 @@
+127.0.0.1 - - [18/Dec/2019:00:01:10 +0300] "GET /Lab3/main HTTP/1.1" 200 594 http-bio-8080-exec-1 36452
+127.0.0.1 - - [18/Dec/2019:00:02:29 +0300] "GET /Lab3/main HTTP/1.1" 200 594 http-bio-8080-exec-2 46089
+127.0.0.1 - - [18/Dec/2019:00:05:24 +0300] "GET /Lab3/main HTTP/1.1" 500 4763 http-bio-8080-exec-4 38427
+127.0.0.1 - - [18/Dec/2019:00:08:39 +0300] "GET /Lab3/main HTTP/1.1" 200 1325 http-bio-8080-exec-1 1733
+127.0.0.1 - - [18/Dec/2019:00:12:11 +0300] "GET /Lab3/main HTTP/1.1" 200 2654 http-bio-8080-exec-3 332
+127.0.0.1 - - [18/Dec/2019:00:13:56 +0300] "GET /Lab3/main HTTP/1.1" 500 3143 http-bio-8080-exec-5 49
+127.0.0.1 - - [18/Dec/2019:00:14:47 +0300] "GET /Lab3/main HTTP/1.1" 200 2888 http-bio-8080-exec-6 400
+127.0.0.1 - - [18/Dec/2019:00:17:13 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-8 15
+127.0.0.1 - - [18/Dec/2019:00:18:54 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-10 32
+127.0.0.1 - - [18/Dec/2019:00:23:18 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 24
+127.0.0.1 - - [18/Dec/2019:00:23:23 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 13
+127.0.0.1 - - [18/Dec/2019:00:23:24 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 11
+127.0.0.1 - - [18/Dec/2019:00:23:24 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 13
+127.0.0.1 - - [18/Dec/2019:00:23:25 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 7
+127.0.0.1 - - [18/Dec/2019:00:23:25 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 8
+127.0.0.1 - - [18/Dec/2019:00:23:25 +0300] "GET /Lab3/main HTTP/1.1" 200 2895 http-bio-8080-exec-2 10
+127.0.0.1 - - [18/Dec/2019:00:24:05 +0300] "GET /Lab3/main HTTP/1.1" 200 2921 http-bio-8080-exec-1 462

@@ -1,0 +1,17 @@
+by\dziamidka\entity\author\Author.class
+by\dziamidka\parser\SAXGenreHandler.class
+by\dziamidka\parser\LibraryStAXParser$LibraryParserSingleton.class
+by\dziamidka\web\MainPageServlet.class
+by\dziamidka\entity\library\Library.class
+by\dziamidka\parser\BookDomParser.class
+by\dziamidka\parser\GenreSaxParser$GenreSaxSingleton.class
+by\dziamidka\parser\LibraryStAXParser.class
+by\dziamidka\entity\Entity.class
+by\dziamidka\parser\GenreSaxParser.class
+by\dziamidka\entity\book\Book.class
+by\dziamidka\parser\BookDomParser$BookDomSingleton.class
+by\dziamidka\entity\publisher\Publisher.class
+by\dziamidka\entity\genre\Genre.class
+by\dziamidka\parser\PublisherDomParser.class
+by\dziamidka\entity\bokInLibrary\BookInLibrary.class
+by\dziamidka\parser\PublisherDomParser$PublisherDomSingleton.class

@@ -1,0 +1,12 @@
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\Entity.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\book\Book.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\publisher\Publisher.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\author\Author.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\genre\Genre.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\service\XmlParser.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\MyException.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\web\MainPageServlet.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\parser\AuthorDomParser.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\bokInLibrary\BookInLibrary.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\entity\library\Library.java
+D:\5Life\Java\WT-Java\Lab3\src\main\java\by\dziamidka\service\DomParser.java
